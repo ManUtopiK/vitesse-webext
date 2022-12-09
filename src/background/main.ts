@@ -1,6 +1,12 @@
 import { onMessage, sendMessage } from 'webext-bridge'
 import type { Tabs } from 'webextension-polyfill'
 
+import { useStorage } from '@vueuse/core'
+const localstorageDemo = useStorage('localstorageDemo', 'localstorage')
+watch(localstorageDemo, (val) => {
+  console.log(val)
+}, { immediate: true })
+
 // only on dev mode
 if (import.meta.hot) {
   // @ts-expect-error for background HMR
